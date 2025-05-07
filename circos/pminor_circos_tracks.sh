@@ -10,6 +10,7 @@ repeats=$3
 samtools_sif=$4
 bedtools_sif=$5
 quartet_sif=$6
+window=${7:-300000} # (optional) bedtools window size for all tracks, defaults to 300Kbp
 
 # Track 1: Karyotype
 # Generate fasta indexes
@@ -72,7 +73,7 @@ cat ${genome}_telomere_bands.bed >> ${genome}_karyotype.circos
 
 #Track 2: Gene Density
 # Make genomic windows with bedtools
-singularity exec ${bedtools_sif} bedtools makewindows -g ${genome}_chrs.fai -w 1000000 > ${genome}_windows.bed
+singularity exec ${bedtools_sif} bedtools makewindows -g ${genome}_chrs.fai -w ${window} > ${genome}_windows.bed
 
 # Pull gene coords from annotation gff3 file
 grep 'gene' ${genes} | grep -Ei 'Chr0?[1-9][0-9]?' | awk '{ print $1, $4, $5 }' OFS='\t' |\
