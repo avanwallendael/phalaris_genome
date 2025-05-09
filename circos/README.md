@@ -1,7 +1,8 @@
 # Circos Generation for _Phalaris minor_ IWGC Genome
 
 ## Setup
-Use singularity or Docker to pull the required containers
+Use singularity (used for this work on Michigan State University's HPCC) or Docker to pull the required containers
+Note: The circos track generation shell script can be used with docker, however, the singularity portions of the script will need to be substituted with the equivalent docker command
   
 ### iwgc_circos_tracks.sh
 ```
